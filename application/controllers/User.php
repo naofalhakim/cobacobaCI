@@ -46,13 +46,19 @@
                 $user = $this->user_model->getUser($user_id);
 
                 $_SESSION['user_id'] = (int) $user_id;
-                $_SESSION['username'] = (string) $user->name;
+                $_SESSION['username'] = (string) $user->username;
                 $_SESSION['email'] = (string) $user->email;
 
-                echo "Login Success";
+                $this->load->view("user/logout/logout");
             }else{
                 echo "Login failed";
             }
+        }
+
+        public function logout(){
+         $this->session->sess_destroy();
+         // header("user/login/login");
+         redirect("user/view_login");
         }
     }
 ?>
